@@ -1,0 +1,52 @@
+Customer
+----------
+ID (auto generated)
+Name
+Street Address
+City
+State
+Zip
+Email
+Phone
+Created Date (auto included)
+Modified Date (auto included)
+-------------
+Add
+View
+Update
+Delete
+
+
+Stock
+------
+ID (auto generated)
+Customer (fk to Customer table)
+Symbol
+Name
+number of shares
+purchase price
+date purchased
+Created Date (auto included)
+Modified Date (auto included)
+--------
+add
+view
+update
+delete
+
+
+Cryptocurrency
+---------
+ID (auto generated)
+Customer (fk to Customer)
+Name
+Qty
+Purchase Price
+Date purchased
+Created Date (auto included)
+Modified Date (auto included)
+--------
+add
+view
+update
+delete
