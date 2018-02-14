@@ -3,8 +3,8 @@ from django.utils import timezone
 
 
 class Customer(models.Model):
-    name = models.CharField(max_length=100)
-    streetaddress = models.CharField(max_length=100)
+    customer_name = models.CharField(max_length=100)
+    street_address = models.CharField(max_length=100)
     city = models.CharField(max_length=500)
     state = models.CharField(max_length=2)
     zip = models.CharField(max_length=5)
@@ -15,48 +15,48 @@ class Customer(models.Model):
     modified_date = models.DateTimeField(
             blank=True, null=True)
 
-    def save(self):
+    def addcustomer(self):
         self.modified_date = timezone.now()
         self.save()
 
     def __str__(self):
-        return self.title
+        return self.customer_name
 
 class Stock(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
+    stock_name = models.CharField(max_length=100)
     symbol = models.CharField(max_length=10)
-    qty = models.IntegerField
-    purchaseprice = models.FloatField
-    purchasedate = models.DateTimeField(
+    qty = models.IntegerField(null=False, blank=False)
+    purchase_price = models.FloatField(null=False, blank=False)
+    purchase_date = models.DateTimeField(
             default=timezone.now)
     created_date = models.DateTimeField(
             default=timezone.now)
     modified_date = models.DateTimeField(
             blank=True, null=True)
 
-    def save(self):
+    def addstock(self):
         self.modified_date = timezone.now()
         self.save()
 
     def __str__(self):
-        return self.title
+        return self.stock_name
 
 class Cryptocurrency(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
-    qty = models.IntegerField
-    purchaseprice = models.FloatField
-    purchasedate = models.DateTimeField(
+    crypto_name = models.CharField(max_length=100)
+    qty = models.IntegerField(null=False, blank=False)
+    purchase_price = models.FloatField(null=False, blank=False)
+    purchase_date = models.DateTimeField(
         default=timezone.now)
     created_date = models.DateTimeField(
             default=timezone.now)
     modified_date = models.DateTimeField(
             blank=True, null=True)
 
-    def save(self):
+    def addcrypto(self):
         self.modified_date = timezone.now()
         self.save()
 
     def __str__(self):
-        return self.title
+        return self.crypto_name
