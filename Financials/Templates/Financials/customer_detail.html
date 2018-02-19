@@ -1,16 +1,17 @@
 {% extends 'Financials/base.html' %}
 {% block content %}
-    {% for customer in customers %}
-        <div class "customer">
-        <h1><a href="{% url 'customer_detail' pk=customer.pk %}">{{ customer.customer_name }}</a></h1>
-            <p> Customer Address:<br>
+    <div class="customer">
+        <p><h2> Customer Name: {{customer.customer_name}}</h2></p>
+        <p> Customer Address:<br>
                 &emsp;&emsp;{{customer.street_address}}<br>
                 &emsp;&emsp;{{customer.city}}, {{customer.state}} {{customer.zip}}<br>
             Customer Email Address: {{customer.email}}<br>
             Customer Phone: {{customer.phone}}<br>
-            <div class="date">
+        <p><h3>Stocks:</h3></p>
+
+        <p><h3>Cryptocurrency:</h3></p>
+
+        <div class="date">
                 Customer last updated on: {{customer.modified_date}}</p>
             </div>
-        </div>
-    {% endfor %}
 {% endblock %}

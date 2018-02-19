@@ -1,0 +1,17 @@
+<!DOCTYPE html>{% extends 'Financials/base.html' %}
+{% block content %}
+    <div class="stock">
+        <p><h2> Customer Name: {{customer.customer_name}}</h2></p>
+        <p> Customer Address:<br>
+                &emsp;&emsp;{{customer.street_address}}<br>
+                &emsp;&emsp;{{customer.city}}, {{customer.state}} {{customer.zip}}<br>
+            Customer Email Address: {{customer.email}}<br>
+            Customer Phone: {{customer.phone}}<br>
+        <p><h3>Stocks:</h3></p>
+
+        <p><h3>Cryptocurrency:</h3></p>
+
+        <div class="date">
+                Stock last updated on: {{customer.modified_date}}</p>
+            </div>
+{% endblock %}
