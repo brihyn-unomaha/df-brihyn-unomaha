@@ -1,5 +1,8 @@
 {% extends 'Financials/base.html' %}
 {% block content %}
+    <div class="add-item">
+        <a href="{% url 'customer_new' %}" class="add-icon"><span class="glyphicon glyphicon-plus"></span></a>
+    </div>
     {% for customer in customers %}
         <div class "customer">
         <h1><a href="{% url 'customer_detail' pk=customer.pk %}">{{ customer.customer_name }}</a></h1>

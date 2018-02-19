@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
+from django.utils import timezone
 from .models import Customer
 from .models import Stock
 from .models import Cryptocurrency
+from .forms import CustomerForm
 from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
@@ -21,3 +23,32 @@ def stock_detail(request, pk):
 def crypto_detail(request, pk):
     cryptocurrency = get_object_or_404(Cryptocurrency, pk=pk)
     return render(request, 'Financials/cryptocurrency_detail.html', {'cryptocurrency': cryptocurrency})
+
+def customer_new(request):
+    if request.method == "POST":
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            customer = form.save(commit=False)
+            customer.author = request.user
+            customer.published_date = timezone.now()
+            customer.modified_date = timezone.now()
+            customer.save()
+            return redirect('customer_detail', pk=customer.pk)
+    else:
+        form = CustomerForm()
+    return render(request, 'financials/customer_edit.html', {'form': form})
+
+def customer_edit(request, pk):
+    customer = get_object_or_404(Customer, pk=pk)
+    if request.method == "POST":
+        form = CustomerForm(request.POST, instance=customer)
+        if form.is_valid():
+            customer = form.save(commit=False)
+            customer.author = request.user
+            customer.published_date = timezone.now()
+            customer.modified_date = timezone.now()
+            customer.save()
+            return redirect('customer_detail', pk=customer.pk)
+    else:
+        form = CustomerForm(instance=customer)
+    return render(request, 'financials/customer_edit.html', {'form': form})

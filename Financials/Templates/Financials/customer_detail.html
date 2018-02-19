@@ -12,6 +12,7 @@
         <p><h3>Cryptocurrency:</h3></p>
 
         <div class="date">
-                Customer last updated on: {{customer.modified_date}}</p>
-            </div>
+            Customer last updated on: {{customer.modified_date}}</p>
+        </div>
+        <a class="btn btn-default" href="{% url 'customer_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
 {% endblock %}
