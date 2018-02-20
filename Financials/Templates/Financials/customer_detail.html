@@ -4,6 +4,7 @@
         <p><h2> Customer Name: {{customer.customer_name}}</h2>
         {% if user.is_authenticated %}
             <a class="btn btn-default" href="{% url 'customer_edit' pk=customer.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a class="btn btn-default" href="{% url 'customer_edit' pk=customer.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
         {% endif %}
 </p>
         <p> Customer Address:<br>

@@ -6,6 +6,7 @@ from .models import Cryptocurrency
 from .forms import CustomerForm
 from django.shortcuts import render, get_object_or_404
 
+
 # Create your views here.
 
 def customer_list(request):
@@ -44,3 +45,11 @@ def customer_edit(request, pk):
     else:
         form = CustomerForm(instance=customer)
     return render(request, 'Financials/customer_edit.html', {'form': form})
+
+def crypto_list(request):
+    cryptocurrency = Cryptocurrency.objects.order_by('crypto_name')
+    return render(request, 'Financials/crypto_list.html', {'cryptocurrency':cryptocurrency})
+
+def stock_list(request):
+    stock = Stock.objects.order_by('stock_name')
+    return render(request, 'Financials/stock_list.html', {'stock':stock})

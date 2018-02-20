@@ -1,8 +1,10 @@
 {% extends 'Financials/base.html' %}
 {% block content %}
     {% if user.is_authenticated %}
-        <div class="add-item">
-            <a href="{% url 'customer_new' %}" class="add-icon"><span class="glyphicon glyphicon-plus"></span></a>
+        <div class="menu-item">
+            <a href="{% url 'crypto_list' %}" class="menu-icon"><span class="glyphicon glyphicon-usd"></span></a>
+            <a href="{% url 'stock_list' %}" class="menu-icon"><span class="glyphicon glyphicon-stats"></span></a>
+            <a href="{% url 'customer_new' %}" class="menu-icon"><span class="glyphicon glyphicon-plus"></span></a>
         </div>
     {% endif %}
     {% for customer in customers %}
