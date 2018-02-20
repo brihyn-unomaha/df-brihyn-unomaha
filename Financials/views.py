@@ -16,14 +16,6 @@ def customer_detail(request, pk):
     customer = get_object_or_404(Customer, pk=pk)
     return render(request, 'Financials/customer_detail.html', {'customer': customer})
 
-def stock_detail(request, pk):
-    stock = get_object_or_404(Stock, pk=pk)
-    return render(request, 'Financials/stock_detail.html', {'stock': stock})
-
-def crypto_detail(request, pk):
-    cryptocurrency = get_object_or_404(Cryptocurrency, pk=pk)
-    return render(request, 'Financials/cryptocurrency_detail.html', {'cryptocurrency': cryptocurrency})
-
 def customer_new(request):
     if request.method == "POST":
         form = CustomerForm(request.POST)
@@ -36,7 +28,7 @@ def customer_new(request):
             return redirect('customer_detail', pk=customer.pk)
     else:
         form = CustomerForm()
-    return render(request, 'financials/customer_edit.html', {'form': form})
+    return render(request, 'Financials/customer_edit.html', {'form': form})
 
 def customer_edit(request, pk):
     customer = get_object_or_404(Customer, pk=pk)
@@ -51,4 +43,4 @@ def customer_edit(request, pk):
             return redirect('customer_detail', pk=customer.pk)
     else:
         form = CustomerForm(instance=customer)
-    return render(request, 'financials/customer_edit.html', {'form': form})
+    return render(request, 'Financials/customer_edit.html', {'form': form})

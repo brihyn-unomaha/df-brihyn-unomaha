@@ -1,18 +1,18 @@
 {% extends 'Financials/base.html' %}
 {% block content %}
-    <div class="add-item">
-        <a href="{% url 'customer_new' %}" class="add-icon"><span class="glyphicon glyphicon-plus"></span></a>
-    </div>
+    {% if user.is_authenticated %}
+        <div class="add-item">
+            <a href="{% url 'customer_new' %}" class="add-icon"><span class="glyphicon glyphicon-plus"></span></a>
+        </div>
+    {% endif %}
     {% for customer in customers %}
         <div class "customer">
-        <h1><a href="{% url 'customer_detail' pk=customer.pk %}">{{ customer.customer_name }}</a></h1>
+        <h2><a href="{% url 'customer_detail' pk=customer.pk %}">{{ customer.customer_name }}</a></h2>
             <p> Customer Address:<br>
                 &emsp;&emsp;{{customer.street_address}}<br>
                 &emsp;&emsp;{{customer.city}}, {{customer.state}} {{customer.zip}}<br>
-            Customer Email Address: {{customer.email}}<br>
-            Customer Phone: {{customer.phone}}<br>
             <div class="date">
-                Customer last updated on: {{customer.modified_date}}</p>
+                Customer record created on: {{customer.created_date}}.  Last updated on: {{customer.modified_date}}</p>
             </div>
         </div>
     {% endfor %}

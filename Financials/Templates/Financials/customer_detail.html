@@ -1,7 +1,11 @@
 {% extends 'Financials/base.html' %}
 {% block content %}
     <div class="customer">
-        <p><h2> Customer Name: {{customer.customer_name}}</h2></p>
+        <p><h2> Customer Name: {{customer.customer_name}}</h2>
+        {% if user.is_authenticated %}
+            <a class="btn btn-default" href="{% url 'customer_edit' pk=customer.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        {% endif %}
+</p>
         <p> Customer Address:<br>
                 &emsp;&emsp;{{customer.street_address}}<br>
                 &emsp;&emsp;{{customer.city}}, {{customer.state}} {{customer.zip}}<br>
@@ -12,7 +16,6 @@
         <p><h3>Cryptocurrency:</h3></p>
 
         <div class="date">
-            Customer last updated on: {{customer.modified_date}}</p>
+            Customer record created on: {{customer.created_date}}.  Last updated on: {{customer.modified_date}}</p>
         </div>
-        <a class="btn btn-default" href="{% url 'customer_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
 {% endblock %}
