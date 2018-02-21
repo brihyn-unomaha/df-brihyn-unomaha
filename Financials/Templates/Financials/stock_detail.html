@@ -1,17 +1,18 @@
-<!DOCTYPE html>{% extends 'Financials/base.html' %}
+{% extends 'Financials/base.html' %}
 {% block content %}
     <div class="stock">
-        <p><h2> Customer Name: {{customer.customer_name}}</h2></p>
-        <p> Customer Address:<br>
-                &emsp;&emsp;{{customer.street_address}}<br>
-                &emsp;&emsp;{{customer.city}}, {{customer.state}} {{customer.zip}}<br>
-            Customer Email Address: {{customer.email}}<br>
-            Customer Phone: {{customer.phone}}<br>
-        <p><h3>Stocks:</h3></p>
-
-        <p><h3>Cryptocurrency:</h3></p>
-
-        <div class="date">
-                Stock last updated on: {{customer.modified_date}}</p>
-            </div>
+        <p><h2> Stock Name: {{stock.stock_name}}</h2>
+        {% if user.is_authenticated %}
+            <a class="btn btn-default" href="{% url 'stock_edit' pk=stock.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a class="btn btn-default" href="{% url 'stock_delete' pk=stock.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
+        {% endif %}
+</p>
+        <p> Stock Owner:  {{stock.customer}}<br>
+            Stock Symbol: {{stock.symbol}}<br>
+            Purchase Price: {{stock.purchase_price}}<br>
+            Purchase Date: {{stock.purchase_date}}<br>
+            Purchase Quantity: {{stock.qty}}<br>
+         <div class="date">
+           <p> Stock record created on: {{stock.created_date}}.  Last updated on: {{stock.modified_date}}</p>
+        </div>
 {% endblock %}

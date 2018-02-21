@@ -1,1 +1,20 @@
-Stock Listing
+{% extends 'Financials/base.html' %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="menu-item">
+            <a href="{% url 'crypto_list' %}" class="menu-icon"><span class="glyphicon glyphicon-usd"></span></a>
+           <!-- <a href="{% url 'stock_list' %}" class="menu-icon"><span class="glyphicon glyphicon-stats"></span></a>-->
+            <a href="{% url 'customer_list' %}" class="menu-icon"><span class="glyphicon glyphicon-user"></span></a>
+            <a href="{% url 'stock_new' %}" class="menu-icon"><span class="glyphicon glyphicon-plus"></span></a>
+        </div>
+    {% endif %}
+    {% for stock in stocks %}
+        <div class "stock">
+            <h2><a href="{% url 'stock_detail' pk=stock.pk %}">{{ stock.stock_name }}</a></h2>
+            Stock owned by: {{stock.customer}}
+            <div class="date">
+                Stock purchased on: {{stock.purchase_date}}.  Last updated on: {{stock.modified_date}}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

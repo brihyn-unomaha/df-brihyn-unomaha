@@ -1,1 +1,20 @@
-Crypto Page
+{% extends 'Financials/base.html' %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="menu-item">
+           <!--<a href="{% url 'crypto_list' %}" class="menu-icon"><span class="glyphicon glyphicon-usd"></span></a>-->
+            <a href="{% url 'stock_list' %}" class="menu-icon"><span class="glyphicon glyphicon-stats"></span></a>
+            <a href="{% url 'customer_list' %}" class="menu-icon"><span class="glyphicon glyphicon-user"></span></a>
+            <a href="{% url 'crypto_new' %}" class="menu-icon"><span class="glyphicon glyphicon-plus"></span></a>
+        </div>
+    {% endif %}
+    {% for crypto in cryptocurrency %}
+        <div class "crypto">
+        <h2><a href="{% url 'crypto_detail' pk=crypto.pk %}">{{ crypto.crypto_name }}</a></h2>
+            Stock owned by: {{crypto.customer}}
+            <div class="date">
+                Cryptocurrency purchased on: {{crypto.purchase_date}}.  Last updated on: {{crypto.modified_date}}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
