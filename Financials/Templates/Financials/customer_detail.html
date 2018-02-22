@@ -1,10 +1,10 @@
 {% extends 'Financials/base.html' %}
 {% block content %}
         <div class="menu-item">
-            <a href="{% url 'crypto_list' %}" class="menu-icon"><span class="glyphicon glyphicon-usd"></span></a>
-            <a href="{% url 'stock_list' %}" class="menu-icon"><span class="glyphicon glyphicon-stats"></span></a>
-            <a href="{% url 'customer_list' %}" class="menu-icon"><span class="glyphicon glyphicon-user"></span></a>
-            <!--<a href="{% url 'stock_new' %}" class="menu-icon"><span class="glyphicon glyphicon-plus"></span></a>-->
+            <a href="{% url 'crypto_list' %}" class="menu-icon"><span title="Cryptocurrency" class="glyphicon glyphicon-usd"></span></a>
+            <a href="{% url 'stock_list' %}" class="menu-icon"><span title="Stocks" class="glyphicon glyphicon-stats"></span></a>
+            <a href="{% url 'customer_list' %}" class="menu-icon"><span title="Customers" class="glyphicon glyphicon-user"></span></a>
+            <!--<a href="{% url 'stock_new' %}" class="menu-icon"><span title="Add" class="glyphicon glyphicon-plus"></span></a>-->
         </div>
 
     <div class="customer">
@@ -21,13 +21,13 @@
             Customer Phone: {{customer.phone}}<br>
         <p><h3>Stocks:</h3></p>
         {% for stocks in customer.stock_set.all %}
-            <h4><li>Stock Name: {{ stocks.stock_name }}</h4> </li>
+            <h4><li>Stock Name: <a href="{% url 'stock_detail' pk=stocks.pk %}">{{ stocks.stock_name }}</a></h4> </li>
         {% endfor %}
 
 
         <p><h3>Cryptocurrency:</h3></p>
         {% for crypto in customer.cryptocurrency_set.all %}
-            <h4><li>Cryptocurrency Name: {{ crypto.crypto_name }} </h4> </li>
+            <h4><li>Cryptocurrency Name: <a href="{% url 'crypto_detail' pk=crypto.pk %}">{{ crypto.crypto_name }}</a> </h4> </li>
         {% endfor %}
 
         <div class="date">
