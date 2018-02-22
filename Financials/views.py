@@ -59,8 +59,8 @@ def crypto_list(request):
     return render(request, 'Financials/crypto_list.html', {'cryptocurrency':cryptocurrency})
 
 def crypto_detail(request, pk):
-    crypto = get_object_or_404(Cryptocurrency, pk=pk)
-    return render(request, 'Financials/crypto_detail.html', {'crypto': crypto})
+    cryptocurrency = get_object_or_404(Cryptocurrency, pk=pk)
+    return render(request, 'Financials/crypto_detail.html', {'cryptocurrency': cryptocurrency})
 
 def crypto_new(request):
     if request.method == "POST":

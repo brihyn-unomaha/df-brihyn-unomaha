@@ -1,5 +1,12 @@
 {% extends 'Financials/base.html' %}
 {% block content %}
+        <div class="menu-item">
+            <a href="{% url 'crypto_list' %}" class="menu-icon"><span class="glyphicon glyphicon-usd"></span></a>
+            <a href="{% url 'stock_list' %}" class="menu-icon"><span class="glyphicon glyphicon-stats"></span></a>
+            <a href="{% url 'customer_list' %}" class="menu-icon"><span class="glyphicon glyphicon-user"></span></a>
+            <!--<a href="{% url 'stock_new' %}" class="menu-icon"><span class="glyphicon glyphicon-plus"></span></a>-->
+        </div>
+
     <div class="customer">
         <p><h2> Customer Name: {{customer.customer_name}}</h2>
         {% if user.is_authenticated %}
@@ -13,8 +20,15 @@
             Customer Email Address: {{customer.email}}<br>
             Customer Phone: {{customer.phone}}<br>
         <p><h3>Stocks:</h3></p>
+        {% for stocks in customer.stock_set.all %}
+            <h4><li>Stock Name: {{ stocks.stock_name }}</h4> </li>
+        {% endfor %}
+
 
         <p><h3>Cryptocurrency:</h3></p>
+        {% for crypto in customer.cryptocurrency_set.all %}
+            <h4><li>Cryptocurrency Name: {{ crypto.crypto_name }} </h4> </li>
+        {% endfor %}
 
         <div class="date">
             Customer record created on: {{customer.created_date}}.  Last updated on: {{customer.modified_date}}</p>

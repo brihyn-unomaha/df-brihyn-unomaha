@@ -1,5 +1,12 @@
 {% extends 'Financials/base.html' %}
 {% block content %}
+        <div class="menu-item">
+            <a href="{% url 'crypto_list' %}" class="menu-icon"><span class="glyphicon glyphicon-usd"></span></a>
+            <a href="{% url 'stock_list' %}" class="menu-icon"><span class="glyphicon glyphicon-stats"></span></a>
+            <a href="{% url 'customer_list' %}" class="menu-icon"><span class="glyphicon glyphicon-user"></span></a>
+            <!--<a href="{% url 'stock_new' %}" class="menu-icon"><span class="glyphicon glyphicon-plus"></span></a>-->
+        </div>
+
     <div class="crypto">
         <p><h2> Cryptocurrency Name: {{cryptocurrency.crypto_name}}</h2>
         {% if user.is_authenticated %}
