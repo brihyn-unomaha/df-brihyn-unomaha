@@ -8,7 +8,7 @@
             <a href="{% url 'stock_new' %}" class="menu-icon"><span class="glyphicon glyphicon-plus"></span></a>
         </div>
     {% endif %}
-    {% for stock in stocks %}
+    {% for stock in stock %}
         <div class "stock">
             <h2><a href="{% url 'stock_detail' pk=stock.pk %}">{{ stock.stock_name }}</a></h2>
             Stock owned by: {{stock.customer}}

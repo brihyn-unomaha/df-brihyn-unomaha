@@ -87,7 +87,7 @@ def crypto_edit(request, pk):
             crypto.published_date = timezone.now()
             crypto.modified_date = timezone.now()
             crypto.save()
-            return redirect('customer_detail', pk=crypto.pk)
+            return redirect('crypto_detail', pk=crypto.pk)
     else:
         form = CryptoForm(instance=crypto)
     return render(request, 'Financials/crypto_edit.html', {'form': form})
@@ -122,7 +122,7 @@ def stock_new(request):
     return render(request, 'Financials/stock_edit.html', {'form': form})
 
 def stock_edit(request, pk):
-    stock = get_object_or_404(Customer, pk=pk)
+    stock = get_object_or_404(Stock, pk=pk)
     if request.method == "POST":
         form = StockForm(request.POST, instance=stock)
         if form.is_valid():

@@ -14,7 +14,7 @@ class CryptoForm(forms.ModelForm):
 
     class Meta:
         model = Cryptocurrency
-        fields = ('crypto_name','customer','qty','purchase_price',' purchase_date',)
+        fields = ('crypto_name','customer','qty','purchase_price','purchase_date',)
 
 class StockForm(forms.ModelForm):
 
