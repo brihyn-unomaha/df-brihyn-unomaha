@@ -1,0 +1,22 @@
+{% extends 'Financials/base.html' %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="menu-item">
+            <a href="{% url 'crypto_list' %}" class="menu-icon"><span title="Cryptocurrency" class="glyphicon glyphicon-usd"></span></a>
+            <a href="{% url 'stock_list' %}" class="menu-icon"><span title="Stocks" class="glyphicon glyphicon-stats"></span></a>
+          <!-- <a href="{% url 'customer_list' %}" class="menu-icon"><span title="Customers" class="glyphicon glyphicon-user"></span></a>-->
+            <a href="{% url 'customer_new' %}" class="menu-icon"><span title="Add" class="glyphicon glyphicon-plus"></span></a>
+        </div>
+    {% endif %}
+    {% for customer in customers %}
+        <div class "customer">
+        <h2><a href="{% url 'customer_detail' pk=customer.pk %}">{{ customer.customer_name }}</a></h2>
+            <p> Customer Address:<br>
+                &emsp;&emsp;{{customer.street_address}}<br>
+                &emsp;&emsp;{{customer.city}}, {{customer.state}} {{customer.zip}}<br>
+            <div class="date">
+                Customer record created on: {{customer.created_date}}.  Last updated on: {{customer.modified_date}}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

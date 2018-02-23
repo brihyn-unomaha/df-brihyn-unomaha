@@ -1,0 +1,24 @@
+{% extends 'Financials/base.html' %}
+{% block content %}
+        <div class="menu-item">
+            <a href="{% url 'crypto_list' %}" class="menu-icon"><span title="Cryptocurrency" class="glyphicon glyphicon-usd"></span></a>
+            <a href="{% url 'stock_list' %}" class="menu-icon"><span title="Stocks" class="glyphicon glyphicon-stats"></span></a>
+            <a href="{% url 'customer_list' %}" class="menu-icon"><span title="Customers" class="glyphicon glyphicon-user"></span></a>
+            <!--<a href="{% url 'stock_new' %}" class="menu-icon"><span title="Add" class="glyphicon glyphicon-plus"></span></a>-->
+        </div>
+
+    <div class="crypto">
+        <p><h2> Cryptocurrency Name: {{cryptocurrency.crypto_name}}</h2>
+        {% if user.is_authenticated %}
+            <a class="btn btn-default" href="{% url 'crypto_edit' pk=cryptocurrency.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a class="btn btn-default" href="{% url 'crypto_delete' pk=cryptocurrency.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
+        {% endif %}
+</p>
+        <p> Cryptocurrency Owner:  {{cryptocurrency.customer}}<br>
+            Purchase Price: {{cryptocurrency.purchase_price}}<br>
+            Purchase Date: {{cryptocurrency.purchase_date}}<br>
+            Purchase Quantity: {{cryptocurrency.qty}}<br>
+         <div class="date">
+           <p> Cryptocurrency record created on: {{cryptocurrency.created_date}}.  Last updated on: {{cryptocurrency.modified_date}}</p>
+        </div>
+{% endblock %}
